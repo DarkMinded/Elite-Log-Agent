@@ -6,7 +6,6 @@ using DW.ELA.Interfaces.Events;
 using DW.ELA.Plugin.Inara.Model;
 using DW.ELA.Utility.Extensions;
 using DW.ELA.Utility.Json;
-using MoreLinq;
 using Newtonsoft.Json.Linq;
 using NLog;
 

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
-using MoreLinq;
+//using MoreLinq;
+//using MoreLinq.Extensions;
 using NLog;
 using NLog.Fluent;
 
@@ -149,11 +150,8 @@ namespace DW.ELA.Controller
                 {
                     lock (stateRecording)
                     {
-                        return stateRecording
-                            .Where(l => l.Key <= atTime)
-                            .MaxBy(l => l.Key)
-                            .Select(l => l.Value)
-                            .FirstOrDefault();
+                        return (T)stateRecording.OrderByDescending(l => l.Key <= atTime).FirstOrDefault().Value;
+                            
                     }
                 }
                 catch (Exception e)

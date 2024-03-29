@@ -6,7 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Settings;
-using MoreLinq;
+//using MoreLinq;
+//using MoreLinq.Extensions;
 using NLog;
 
 namespace DW.ELA.Controller
@@ -41,7 +42,7 @@ namespace DW.ELA.Controller
                     .Cast<DataGridViewRow>()
                     .Select(row => new KeyValuePair<string, string>(row.Cells[apiKeysGridCommanderColumn.Index].Value?.ToString(), row.Cells[apiKeysGridKeyColumn.Index].Value?.ToString()))
                     .Where(kvp => !string.IsNullOrEmpty(kvp.Key))
-                    .Where(kvp => !string.IsNullOrEmpty(kvp.Value))
+                    .Where(kvp => !string.IsNullOrEmpty(kvp.Value)).ToDictionary()
                     .ToDictionary();
             }
             set
@@ -159,7 +160,15 @@ namespace DW.ELA.Controller
 
         public override void SaveSettings() => SaveSettingsFunc?.Invoke(GlobalSettings, ApiKeys);
 
-        private void ApiKeyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start(ApiSettingsLink);
+        private void ApiKeyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var ps = new ProcessStartInfo(ApiSettingsLink)
+            {
+                UseShellExecute = true,
+                Verb = "open"
+            };
+            Process.Start(ps);
+        }
 
         private async void ButtonValidateKeys_ClickAsync(object sender, EventArgs e)
         {

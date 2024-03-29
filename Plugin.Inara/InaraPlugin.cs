@@ -8,7 +8,6 @@ using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Settings;
 using DW.ELA.Plugin.Inara.Model;
 using DW.ELA.Utility;
-using MoreLinq;
 using NLog;
 using NLog.Fluent;
 
@@ -19,7 +18,7 @@ namespace DW.ELA.Plugin.Inara
         public const string CPluginName = "INARA";
         public const string CPluginId = "InaraUploader";
         private const string InaraApiUrl = "https://inara.cz/inapi/v1/";
-        private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger().WithProperty(propertyKey: "version", AppInfo.Version);
 
         private readonly IPlayerStateHistoryRecorder playerStateRecorder;
         private readonly IUserNotificationInterface notificationInterface;
@@ -74,7 +73,7 @@ namespace DW.ELA.Plugin.Inara
         {
             ApiKeys = GetActualApiKeys(),
             ApiKeyValidator = this,
-            ApiSettingsLink = "https://inara.cz/settings-api/",
+            ApiSettingsLink = "https://inara.cz/elite/cmdr-settings-api/",
             GlobalSettings = settings,
             SaveSettingsFunc = SaveSettings
         };
@@ -149,7 +148,7 @@ namespace DW.ELA.Plugin.Inara
                 .GroupBy(e => e.EventName, e => e)
                 .ToDictionary(g => g.Key, g => g.ToArray());
             foreach (string type in LatestOnlyEvents.Intersect(eventsByType.Keys))
-                eventsByType[type] = new[] { eventsByType[type].MaxBy(e => e.Timestamp).FirstOrDefault() };
+                eventsByType[type] = new[] { eventsByType[type].OrderByDescending(e => e.Timestamp).FirstOrDefault() };
 
             // It does not make sense to e.g. add inventory materials if we already have a newer inventory snapshot
             foreach (string type in SupersedesEvents.Keys.Intersect(eventsByType.Keys))
