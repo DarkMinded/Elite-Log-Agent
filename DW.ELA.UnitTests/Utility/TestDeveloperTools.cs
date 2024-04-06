@@ -4,6 +4,7 @@ using System.Linq;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Utility
 {
@@ -25,7 +26,7 @@ namespace DW.ELA.UnitTests.Utility
                                           .ToHashSet();
 
             string eventsString = string.Join("\n", eventExamples);
-            Assert.IsNotEmpty(eventsString);
+            ClassicAssert.IsNotEmpty(eventsString);
             Console.WriteLine(eventsString);
         }
 

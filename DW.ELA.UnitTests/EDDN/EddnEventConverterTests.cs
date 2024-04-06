@@ -6,6 +6,7 @@ using DW.ELA.Plugin.EDDN.Model;
 using DW.ELA.UnitTests.Utility;
 using Moq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.EDDN
 {
@@ -45,9 +46,9 @@ namespace DW.ELA.UnitTests.EDDN
 
             foreach (var e in convertedEvents.OfType<EddnJournalEvent>())
             {
-                Assert.NotNull(e.Message.Property("SystemAddress"));
-                Assert.NotNull(e.Message.Property("StarPos"));
-                Assert.NotNull(e.Message.Property("StarSystem"));
+                ClassicAssert.NotNull(e.Message.Property("SystemAddress"));
+                ClassicAssert.NotNull(e.Message.Property("StarPos"));
+                ClassicAssert.NotNull(e.Message.Property("StarSystem"));
             }
         }
 
@@ -69,15 +70,15 @@ namespace DW.ELA.UnitTests.EDDN
 
             foreach (var e in convertedEvents.OfType<EddnJournalEvent>())
             {
-                Assert.Null(e.Message.Property("ActiveFine"));
-                Assert.Null(e.Message.Property("BoostUsed"));
-                Assert.Null(e.Message.Property("CockpitBreach"));
-                Assert.Null(e.Message.Property("FuelLevel"));
-                Assert.Null(e.Message.Property("FuelUsed"));
-                Assert.Null(e.Message.Property("JumpDist"));
-                Assert.Null(e.Message.Property("Latitude"));
-                Assert.Null(e.Message.Property("Longitude"));
-                Assert.Null(e.Message.Property("Wanted"));
+                ClassicAssert.Null(e.Message.Property("ActiveFine"));
+                ClassicAssert.Null(e.Message.Property("BoostUsed"));
+                ClassicAssert.Null(e.Message.Property("CockpitBreach"));
+                ClassicAssert.Null(e.Message.Property("FuelLevel"));
+                ClassicAssert.Null(e.Message.Property("FuelUsed"));
+                ClassicAssert.Null(e.Message.Property("JumpDist"));
+                ClassicAssert.Null(e.Message.Property("Latitude"));
+                ClassicAssert.Null(e.Message.Property("Longitude"));
+                ClassicAssert.Null(e.Message.Property("Wanted"));
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DW.ELA.Utility.Extensions;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests
 {
@@ -12,7 +13,7 @@ namespace DW.ELA.UnitTests
         {
             var dictionary = GetTestDictionary();
             dictionary.AddIfNotNull("D", "4");
-            Assert.AreEqual("4", dictionary["D"]);
+            ClassicAssert.AreEqual("4", dictionary["D"]);
         }
 
         [Test]
@@ -20,7 +21,7 @@ namespace DW.ELA.UnitTests
         {
             var dictionary = GetTestDictionary();
             dictionary.AddIfNotNull("D", null);
-            Assert.IsFalse(dictionary.ContainsKey("D"));
+            ClassicAssert.IsFalse(dictionary.ContainsKey("D"));
         }
 
         [Test]

@@ -10,6 +10,8 @@ using DW.ELA.Utility;
 using Newtonsoft.Json.Linq;
 using NLog;
 using NLog.Fluent;
+using MoreLinq;
+
 
 
 namespace DW.ELA.Plugin.EDSM
@@ -77,11 +79,12 @@ namespace DW.ELA.Plugin.EDSM
                 {
                     var apiFacade = new EdsmApiFacade(RestClient, commander.Name, apiKey);
                     var apiEventsBatches = events
+
                         .Where(e => !ignoredEvents.Result.Contains(e["event"].ToString()))
+                        .Batch(100) // EDSM API only accepts 100 events in single call
                         .Reverse()
-                        .CustomBatch(100) // EDSM API only accepts 100 events in single call
                         .ToList();
-                    
+
 
                     foreach (var batch in apiEventsBatches)
                         await apiFacade.PostLogEvents(batch.ToArray());

@@ -3,6 +3,7 @@ using DW.ELA.Interfaces;
 using DW.ELA.Plugin.Inara;
 using DW.ELA.Plugin.Inara.Model;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.INARA
 {
@@ -24,7 +25,7 @@ namespace DW.ELA.UnitTests.INARA
         public void InaraConverterShouldNotFailOnEvents(JournalEvent e)
         {
             var result = eventConverter.Convert(e);
-            Assert.NotNull(result);
+            ClassicAssert.NotNull(result);
             CollectionAssert.AllItemsAreInstancesOfType(result, typeof(ApiInputEvent));
         }
     }

@@ -1,5 +1,6 @@
 ﻿using EliteLogAgent.Autorun;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.UI
 {
@@ -12,9 +13,9 @@ namespace DW.ELA.UnitTests.UI
             {
                 AutorunEnabled = true
             };
-            Assert.IsTrue(manager.AutorunEnabled);
+            ClassicAssert.IsTrue(manager.AutorunEnabled);
             manager.AutorunEnabled = false;
-            Assert.IsFalse(manager.AutorunEnabled);
+            ClassicAssert.IsFalse(manager.AutorunEnabled);
         }
 
         [Test]
@@ -24,9 +25,9 @@ namespace DW.ELA.UnitTests.UI
             {
                 AutorunEnabled = true
             };
-            Assert.IsTrue(manager.AutorunEnabled);
+            ClassicAssert.IsTrue(manager.AutorunEnabled);
             manager.AutorunEnabled = false;
-            Assert.IsFalse(manager.AutorunEnabled);
+            ClassicAssert.IsFalse(manager.AutorunEnabled);
         }
     }
 }

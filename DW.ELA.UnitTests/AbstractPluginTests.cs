@@ -9,6 +9,7 @@ using DW.ELA.Interfaces.Settings;
 using Moq;
 using MoreLinq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests
 {
@@ -39,7 +40,7 @@ namespace DW.ELA.UnitTests
                 plugin.OnNext(@event);
             plugin.FlushQueue();
             CollectionAssert.IsNotEmpty(plugin.Flushed);
-            Assert.AreEqual(10, plugin.Flushed.Count);
+            ClassicAssert.AreEqual(10, plugin.Flushed.Count);
         }
 
         private class TestPlugin : AbstractBatchSendPlugin<JournalEvent, TestSettings>
