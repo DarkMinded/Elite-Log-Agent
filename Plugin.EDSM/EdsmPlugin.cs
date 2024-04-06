@@ -7,17 +7,17 @@ using DW.ELA.Controller;
 using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Settings;
 using DW.ELA.Utility;
-using MoreLinq;
 using Newtonsoft.Json.Linq;
 using NLog;
 using NLog.Fluent;
+
 
 namespace DW.ELA.Plugin.EDSM
 {
     public class EdsmPlugin : AbstractBatchSendPlugin<JObject, EdsmSettings>, IApiKeyValidator
     {
         private const string EdsmApiUrl = "https://www.edsm.net/api-journal-v1/";
-        private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
         private readonly Task<HashSet<string>> ignoredEvents;
         private readonly ConcurrentDictionary<string, string> ApiKeys = new();
         private readonly IUserNotificationInterface notificationInterface;
@@ -50,8 +50,8 @@ namespace DW.ELA.Plugin.EDSM
         private IReadOnlyDictionary<string, string> GetActualApiKeys()
         {
             var pluginSettings = SettingsFacade.GetPluginSettings(GlobalSettings);
-            var config = pluginSettings.ApiKeys.ToDictionary();
-            return config;
+            var config = pluginSettings.ApiKeys;
+            return (IReadOnlyDictionary<string, string>)config;
         }
 
         public override void ReloadSettings()
@@ -79,8 +79,10 @@ namespace DW.ELA.Plugin.EDSM
                     var apiEventsBatches = events
                         .Where(e => !ignoredEvents.Result.Contains(e["event"].ToString()))
                         .Reverse()
-                        .Batch(100) // EDSM API only accepts 100 events in single call
+                        .CustomBatch(100) // EDSM API only accepts 100 events in single call
                         .ToList();
+                    
+
                     foreach (var batch in apiEventsBatches)
                         await apiFacade.PostLogEvents(batch.ToArray());
 
@@ -119,7 +121,7 @@ namespace DW.ELA.Plugin.EDSM
             SaveSettingsFunc = SaveSettings
         };
 
-        private void SaveSettings(GlobalSettings settings, IReadOnlyDictionary<string, string> values) => new PluginSettingsFacade<EdsmSettings>(PluginId).SetPluginSettings(settings, new EdsmSettings() { ApiKeys = values.ToDictionary() });
+        private void SaveSettings(GlobalSettings settings, IReadOnlyDictionary<string, string> values) => new PluginSettingsFacade<EdsmSettings>(PluginId).SetPluginSettings(settings, new EdsmSettings() { ApiKeys = (IDictionary<string, string>)values });
 
         public async Task<bool> ValidateKeyAsync(string cmdrName, string apiKey)
         {

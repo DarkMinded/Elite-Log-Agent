@@ -12,7 +12,7 @@ namespace EliteLogAgent
 {
     internal static partial class Program
     {
-        private static readonly ILogger RootLog = LogManager.GetCurrentClassLogger();
+        private static readonly Logger RootLog = LogManager.GetCurrentClassLogger().WithProperty(propertyKey: "version", propertyValue: AppInfo.Version);
 
         /// <summary>
         /// The main entry point for the application.
@@ -31,10 +31,8 @@ namespace EliteLogAgent
 
             // Setup logs
             container.Resolve<ILogSettingsBootstrapper>().Setup();
-            RootLog.Info()
-                .Message("Application started")
-                .Property("version", AppInfo.Version)
-                .Write();
+            RootLog.Info("Application started");
+            
 
             // Load plugins
             var pluginManager = container.Resolve<IPluginManager>();
