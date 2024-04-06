@@ -19,7 +19,7 @@ namespace DW.ELA.Plugin.Inara.Model
         [JsonProperty("appVersion")]
         public string AppVersion => Utility.AppInfo.Version;
 
-        [JsonProperty("isDeveloped")]
+        [JsonProperty("isBeingDeveloped")]
         public bool IsDeveloped => false;
 
         [JsonProperty("APIkey")]
