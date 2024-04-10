@@ -3,6 +3,7 @@ using DW.ELA.Interfaces;
 using DW.ELA.Plugin.EDSM;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.EDSM
 {
@@ -24,7 +25,7 @@ namespace DW.ELA.UnitTests.EDSM
         public void JsonExtractorShouldNotFailOnEvents(JournalEvent e)
         {
             var result = eventConverter.Convert(e);
-            Assert.NotNull(result);
+            ClassicAssert.NotNull(result);
             CollectionAssert.AllItemsAreInstancesOfType(result, typeof(JObject));
         }
     }

@@ -8,6 +8,7 @@ using DW.ELA.Interfaces;
 using DW.ELA.UnitTests.Utility;
 using DW.ELA.Utility.Json;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Controller
 {
@@ -31,13 +32,13 @@ namespace DW.ELA.UnitTests.Controller
             burstPlayer1.Subscribe(events.Add);
             burstPlayer1.Play();
             CollectionAssert.IsNotEmpty(events);
-            Assert.AreEqual(1, events.Count);
+            ClassicAssert.AreEqual(1, events.Count);
 
             var burstPlayer2 = new JournalBurstPlayer(directoryProvider.Directory, 100);
             burstPlayer2.Subscribe(events.Add);
             burstPlayer2.Play();
             CollectionAssert.IsNotEmpty(events);
-            Assert.AreEqual(3, events.Count);
+            ClassicAssert.AreEqual(3, events.Count);
         }
 
         private static IEnumerable<string> EventsAsJson => TestEventSource.CannedEvents.Select(Serialize.ToJson);

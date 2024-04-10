@@ -5,6 +5,7 @@ using DW.ELA.Interfaces.Events;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Controller
 {
@@ -47,16 +48,16 @@ namespace DW.ELA.UnitTests.Controller
 
 
             eventConverter.OnNext(e1);
-            Assert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            Assert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
+            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
 
             eventConverter.OnNext(e2);
-            Assert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            Assert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
+            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
 
             eventConverter.OnNext(e3);
-            Assert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            Assert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
+            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
         }
     }
 }

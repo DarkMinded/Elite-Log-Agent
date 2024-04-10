@@ -1,5 +1,6 @@
 ﻿using EliteLogAgent.Deployment;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.UI
 {
@@ -9,8 +10,8 @@ namespace DW.ELA.UnitTests.UI
         public void ShouldProvideDirectories()
         {
             var manager = new DataPathManager();
-            Assert.IsNotEmpty(manager.LogDirectory);
-            Assert.IsNotEmpty(manager.SettingsDirectory);
+            ClassicAssert.IsNotEmpty(manager.LogDirectory);
+            ClassicAssert.IsNotEmpty(manager.SettingsDirectory);
         }
     }
 }

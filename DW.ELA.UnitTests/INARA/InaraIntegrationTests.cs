@@ -8,6 +8,7 @@ using DW.ELA.Plugin.Inara.Model;
 using DW.ELA.UnitTests.Utility;
 using DW.ELA.Utility;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.INARA
 {
@@ -53,7 +54,7 @@ namespace DW.ELA.UnitTests.INARA
                 .ToList();
 
             CollectionAssert.IsEmpty(results);
-            Assert.Pass("Uploaded {0} events", convertedEvents.Length);
+            Assert.Pass($"Uploaded {convertedEvents.Length} events" );
         }
     }
 }

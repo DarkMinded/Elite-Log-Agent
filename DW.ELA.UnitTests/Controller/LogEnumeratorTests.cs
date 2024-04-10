@@ -2,6 +2,8 @@
 using DW.ELA.Controller;
 using DW.ELA.UnitTests.Utility;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 
 namespace DW.ELA.UnitTests.Controller
 {

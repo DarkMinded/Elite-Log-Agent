@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="morelinq" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DW.ELA.Utility\DW.ELA.Utility.csproj" />
     <ProjectReference Include="..\Interfaces\DW.ELA.Interfaces.csproj" />
   </ItemGroup>

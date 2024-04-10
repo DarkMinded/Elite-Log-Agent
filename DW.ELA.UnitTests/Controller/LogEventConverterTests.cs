@@ -8,6 +8,7 @@ using DW.ELA.UnitTests.Utility;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Controller
 {
@@ -30,7 +31,7 @@ namespace DW.ELA.UnitTests.Controller
                 ""Influence"":0.000000, ""Allegiance"":""Independent""} ] }";
 
             var @event = (FsdJump)JournalEventConverter.Convert(JObject.Parse(eventString));
-            Assert.AreEqual(new DateTime(2018, 06, 25, 18, 10, 30, DateTimeKind.Utc), @event.Timestamp);
+            ClassicAssert.AreEqual(new DateTime(2018, 06, 25, 18, 10, 30, DateTimeKind.Utc), @event.Timestamp);
         }
 
         [Test]
@@ -49,7 +50,7 @@ namespace DW.ELA.UnitTests.Controller
                 source.Remove("Parents"); // TODO: find a way to serialize that structure
 
             var diffs = JsonComparer.Compare(@event.Event, source, serialized);
-            Assert.IsEmpty(diffs);
+            ClassicAssert.IsEmpty(diffs);
         }
 
         [Test]

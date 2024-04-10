@@ -9,8 +9,8 @@ using DW.ELA.Interfaces;
 using DW.ELA.UnitTests.Utility;
 using DW.ELA.Utility.Json;
 using NUnit.Framework;
-using MoreLinq;
 using DW.ELA.Interfaces.Events;
+using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Controller
 {
@@ -61,12 +61,12 @@ namespace DW.ELA.UnitTests.Controller
         {
             var directoryProvider = new TestDirectoryProvider();
             Directory.Delete(directoryProvider.Directory, true);
-            Assert.IsFalse(Directory.Exists(directoryProvider.Directory));
+            ClassicAssert.IsFalse(Directory.Exists(directoryProvider.Directory));
             Assert.DoesNotThrow(() => new JournalMonitor(directoryProvider, 1));
 
             // In current implementation, JournalMonitor creates the dir if missing
             // Remove if implementation changes
-            Assert.IsTrue(Directory.Exists(directoryProvider.Directory));
+            ClassicAssert.IsTrue(Directory.Exists(directoryProvider.Directory));
         }
     }
 }
