@@ -2,9 +2,9 @@
 
 :warning::warning::warning:PROJECT RESTARTED:warning::warning::warning:
 
-The current tragic and unforgivable events are sending waves of impact throughout the world. Unfortunately, for this project, the ripple means that there is no possiblity to pay for hosting of ClickOnce update files - which are at the heart of fast & seamless updates ELA was providing. This may change in future - however, at the moment I have no choice but to recommend to move to alternative software
-
-Thank you for everyone who used and helped to improve this software
+Hello My name Is Nuno Anjos AKA CMDR Darkminded[WT] I was a user of Elite Log Agent and was away from the game for almost 4 years (2020 - 2024) 
+I was surprised that DarkWanderer suspended this project and since i am a .Net Developer i decided the restart the project.
+I want to invite any everyone in the Elite Dangerous Community to contribute with sugestions, code or testing time to reachout to me, email: cmdr_darkminded@gmail.com
 
 # Elite Log Agent
 
@@ -33,7 +33,7 @@ To contribute to development, please fork the repository and raise PRs
 You're welcome to contribute by:
 
 1. Using the application!
-2. Raising [issues](https://github.com/DarkWanderer/Elite-Log-Agent/issues) on GitHub
+2. Raising [issues](https://github.com/DarkMinded/Elite-Log-Agent/issues) on GitHub
 3. Proposing pull request with changes and/or new functionality, including plugins
 
 ## SDLC
@@ -57,8 +57,8 @@ Releasing to ClickOnce installer and github  is done via merging to `prod` branc
 [buildstatus-master]: https://ci.appveyor.com/api/projects/status/6n52i9wkthtwtb34/branch/master
 [buildstatus-prod]: https://ci.appveyor.com/api/projects/status/6n52i9wkthtwtb34/branch/prod
 [project]: https://ci.appveyor.com/project/DarkWanderer/Elite-Log-Agent
-[clickonce]: https://elitelogagent.blob.core.windows.net/clickonce/EliteLogAgent.application
-[release-latest]: https://github.com/DarkWanderer/Elite-Log-Agent/releases/latest
-[releases]: https://github.com/DarkWanderer/Elite-Log-Agent/releases
+[clickonce]: https://github.com/Darkinded/Elite-Log-Agent/releases/latest
+[release-latest]: https://github.com/Darkinded/Elite-Log-Agent/releases/latest
+[releases]: https://github.com/Darkinded/Elite-Log-Agent/releases
 [codecov-badge]: https://codecov.io/gh/DarkWanderer/Elite-Log-Agent/branch/master/graph/badge.svg
 [release-badge]: https://img.shields.io/github/release/DarkWanderer/Elite-Log-Agent.svg
