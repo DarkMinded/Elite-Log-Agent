@@ -12,7 +12,7 @@ namespace DW.ELA.Interfaces.Events
 
         [JsonProperty]
         public FactionConflictInfo Faction1 { get; set; }
-        
+
         [JsonProperty]
         public FactionConflictInfo Faction2 { get; set; }
     }

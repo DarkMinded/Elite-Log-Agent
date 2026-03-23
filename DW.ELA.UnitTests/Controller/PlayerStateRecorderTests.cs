@@ -1,11 +1,11 @@
-﻿using System;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller;
 using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
-using DW.ELA.Utility.Json;
+using DW.ELA.UnitTests.Utility;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
 
 namespace DW.ELA.UnitTests.Controller
 {

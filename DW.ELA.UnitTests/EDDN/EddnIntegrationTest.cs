@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DW.ELA.Plugin.EDDN;
+﻿using DW.ELA.Plugin.EDDN;
 using DW.ELA.Plugin.EDDN.Model;
 using DW.ELA.UnitTests.Utility;
-using DW.ELA.Utility;
+using DW.ELA.Utility.Rest;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DW.ELA.UnitTests.EDDN
 {

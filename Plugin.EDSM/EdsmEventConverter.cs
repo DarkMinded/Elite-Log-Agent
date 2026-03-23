@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace DW.ELA.Plugin.EDSM
 {

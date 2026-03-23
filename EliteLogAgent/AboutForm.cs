@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using DW.ELA.Utility;
+﻿using DW.ELA.Utility.App;
 using EliteLogAgent.Properties;
+using System;
+using System.Windows.Forms;
 
 namespace EliteLogAgent
 {

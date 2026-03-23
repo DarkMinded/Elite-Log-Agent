@@ -1,16 +1,16 @@
-﻿using System;
+﻿using DW.ELA.Controller.Journal;
+using DW.ELA.Interfaces;
+using DW.ELA.Interfaces.Events;
+using DW.ELA.UnitTests.Utility;
+using DW.ELA.Utility.Json;
+using NUnit.Framework;
+using NUnit.Framework.Legacy;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using DW.ELA.Controller;
-using DW.ELA.Interfaces;
-using DW.ELA.UnitTests.Utility;
-using DW.ELA.Utility.Json;
-using NUnit.Framework;
-using DW.ELA.Interfaces.Events;
-using NUnit.Framework.Legacy;
 
 namespace DW.ELA.UnitTests.Controller
 {

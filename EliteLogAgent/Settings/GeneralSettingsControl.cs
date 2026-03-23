@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using NLog;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
-using NLog;
 
 namespace EliteLogAgent.Settings
 {
@@ -21,10 +21,13 @@ namespace EliteLogAgent.Settings
             InitializeComponent();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IPlayerStateHistoryRecorder PlayerStateRecorder { get; internal set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IReadOnlyCollection<IPlugin> Plugins { get; internal set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IAutorunManager AutorunManager { get; set; }
 
         private void GeneralSettingsControl_Load(object sender, EventArgs e)

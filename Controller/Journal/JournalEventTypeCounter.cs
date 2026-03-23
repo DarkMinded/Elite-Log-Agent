@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using DW.ELA.Interfaces;
 
-namespace DW.ELA.Controller
+namespace DW.ELA.Controller.Journal
 {
     public class JournalEventTypeCounter : IObserver<JournalEvent>
     {

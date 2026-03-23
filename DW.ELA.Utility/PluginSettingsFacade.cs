@@ -1,8 +1,8 @@
-﻿using System;
-using DW.ELA.Interfaces.Settings;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
+using System;
 
 namespace DW.ELA.Utility
 {

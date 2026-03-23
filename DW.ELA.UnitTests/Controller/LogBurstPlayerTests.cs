@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller.Journal;
 using DW.ELA.Interfaces;
 using DW.ELA.UnitTests.Utility;
 using DW.ELA.Utility.Json;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace DW.ELA.UnitTests.Controller
 {

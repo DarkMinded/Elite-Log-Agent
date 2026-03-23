@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility;
-using NLog;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.Extensions;
 using DW.ELA.Utility.Observable;
+using NLog;
+using System;
+using System.Linq;
 
 namespace DW.ELA.Controller
 {

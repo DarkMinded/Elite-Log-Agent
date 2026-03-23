@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using DW.ELA.Interfaces;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using DW.ELA.Interfaces;
-using NLog;
 
 namespace EliteLogAgent
 {

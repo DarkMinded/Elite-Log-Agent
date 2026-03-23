@@ -1,6 +1,6 @@
-﻿using System;
-using DW.ELA.Utility.Log;
+﻿using DW.ELA.Utility.Logging;
 using NUnit.Framework;
+using System;
 
 namespace DW.ELA.UnitTests
 {

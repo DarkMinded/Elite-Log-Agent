@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,10 +8,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility.Log;
 
-namespace DW.ELA.Utility
+namespace DW.ELA.Utility.Rest
 {
     public class ThrottlingRestClient : IRestClient
     {

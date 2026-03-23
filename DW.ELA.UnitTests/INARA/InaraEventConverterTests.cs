@@ -2,6 +2,7 @@
 using DW.ELA.Interfaces;
 using DW.ELA.Plugin.Inara;
 using DW.ELA.Plugin.Inara.Model;
+using DW.ELA.UnitTests.Utility;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
 

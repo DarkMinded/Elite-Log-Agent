@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Plugin.EDSM;
 using DW.ELA.UnitTests.Utility;
 using Moq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DW.ELA.UnitTests.EDSM
 {

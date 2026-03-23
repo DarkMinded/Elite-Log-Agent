@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 
-namespace DW.ELA.Interfaces.Settings
+namespace DW.ELA.Interfaces
 {
     public class GlobalSettings : ICloneable
     {

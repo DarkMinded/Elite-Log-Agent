@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.App;
+using DW.ELA.Utility.Observable;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility.App;
-using NLog;
-using NLog.Fluent;
-using DW.ELA.Utility.Observable;
 
-namespace DW.ELA.Controller
+namespace DW.ELA.Controller.Journal
 {
     /// <summary>
     /// This class runs in background to monitor and notify consumers (observers) of new log events
@@ -61,7 +59,7 @@ namespace DW.ELA.Controller
             filePosition = string.IsNullOrEmpty(currentFile) || EliteDangerous.IsRunning ? 0 : new FileInfo(currentFile).Length;
 
             fileWatcher.EnableRaisingEvents = true;
-            Log.Info().Message("Started monitoring").Property("directory", logDirectory).Write();
+            Log.Info("Started monitoring");
         }
 
         private void LogFlushTimer_Event(object sender, ElapsedEventArgs e)
@@ -88,11 +86,9 @@ namespace DW.ELA.Controller
             }
             catch (Exception e)
             {
-                Log.Error()
-                    .Message("Error while reading event file")
-                    .Exception(e)
-                    .Property("file", fullPath)
-                    .Write();
+                Log.Error( e, "Error while reading event file");
+                   
+                   
             }
         }
 
@@ -114,10 +110,8 @@ namespace DW.ELA.Controller
                         if (latestFile == currentFile || latestFile == null)
                             return;
 
-                        Log.Info()
-                            .Message("Switched to new file")
-                            .Property("file", latestFile)
-                            .Write();
+                        Log.Info("Switched to new file");
+                            
 
                         currentFile = latestFile;
                         filePosition = ReadJournalFromPosition(currentFile, 0);
@@ -125,20 +119,14 @@ namespace DW.ELA.Controller
                 }
                 catch (FileNotFoundException e)
                 {
-                    Log.Error()
-                        .Message("Journal file not found")
-                        .Exception(e)
-                        .Property("file", currentFile)
-                        .Write();
+                    Log.Error(e, "Journal file not found");
+                        
                     currentFile = null;
                 }
                 catch (Exception e)
                 {
-                    Log.Error()
-                        .Message("Error while reading journal file")
-                        .Exception(e)
-                        .Property("file", currentFile)
-                        .Write();
+                    Log.Error(e, "Error while reading journal file");
+                        
                 }
             }
         }
@@ -162,12 +150,8 @@ namespace DW.ELA.Controller
             }
             catch (Exception e)
             {
-                Log.Error()
-                    .Message("Error while reading journal file")
-                    .Exception(e)
-                    .Property("file", currentFile)
-                    .Property("position", fileReader.Position)
-                    .Write();
+                Log.Error(e, "Error while reading journal file");
+                    
                 textReader.ReadLine(); // read to end of current line, to skip 'bad' data
             }
             return fileReader.Position;

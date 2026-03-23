@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace DW.ELA.Controller
+namespace DW.ELA.Controller.Journal
 {
     public static class JournalFileEnumerator
     {

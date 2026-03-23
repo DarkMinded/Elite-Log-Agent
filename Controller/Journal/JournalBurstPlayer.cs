@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.Observable;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility.Observable;
 
-namespace DW.ELA.Controller
+namespace DW.ELA.Controller.Journal
 {
     /// <summary>
     /// This class replays N last log files to observers - to fill up historic data

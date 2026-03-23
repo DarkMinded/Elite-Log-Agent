@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller;
+using DW.ELA.Controller.Journal;
 using DW.ELA.Interfaces;
-using DW.ELA.LogModel;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
-namespace DW.ELA.UnitTests
+namespace DW.ELA.UnitTests.Utility
 {
     public static class TestEventSource
     {

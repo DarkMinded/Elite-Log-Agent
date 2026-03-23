@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using DW.ELA.Interfaces;
-using DW.ELA.LogModel;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
-using NLog.Fluent;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-namespace DW.ELA.Controller
+namespace DW.ELA.Controller.Journal
 {
     public class JournalFileReader
     {
@@ -47,7 +45,7 @@ namespace DW.ELA.Controller
 
         public JournalEvent ReadFileEvent(string file)
         {
-            Log.Debug().Message("Reading file event").Property("file", file).Write();
+            Log.Debug("Reading file event");
             using var fileReader = OpenForSharedRead(file);
             using var textReader = new StreamReader(fileReader);
             return ReadEventsFromStream(textReader).SingleOrDefault();

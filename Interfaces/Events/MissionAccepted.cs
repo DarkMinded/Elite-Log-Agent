@@ -1,6 +1,5 @@
-﻿using System;
-using DW.ELA.Interfaces;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace DW.ELA.Interfaces.Events
 {

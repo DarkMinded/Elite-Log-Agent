@@ -1,15 +1,14 @@
-﻿using System;
+﻿using DW.ELA.Controller;
+using DW.ELA.Interfaces;
+using DW.ELA.Plugin.Inara.Model;
+using DW.ELA.Utility;
+using DW.ELA.Utility.App;
+using NLog;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DW.ELA.Controller;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
-using DW.ELA.Plugin.Inara.Model;
-using DW.ELA.Utility;
-using NLog;
-using NLog.Fluent;
 
 namespace DW.ELA.Plugin.Inara
 {
@@ -95,32 +94,23 @@ namespace DW.ELA.Plugin.Inara
                     if (ApiInputs.Length > 0)
                         await facade.ApiCall(ApiInputs);
 
-                    Log.Info()
-                        .LoggerName(Log.Name)
-                        .Message("Uploaded events")
-                        .Property("eventsCount", events.Count)
-                        .Property("commander", commander)
-                        .Write();
+                    Log.Info("Uploaded events");
                 }
                 else
                 {
-                    Log.Info()
-                        .LoggerName(Log.Name)
-                        .Message("No INARA API key set for commander, events discarded")
-                        .Property("eventsCount", events.Count)
-                        .Property("commander", commander?.Name ?? "null")
-                        .Write();
+                    Log.Info("No INARA API key set for commander, events discarded");
+                       
                 }
             }
             catch (RateLimitException)
             {
                 notificationInterface.ShowErrorNotification($"Rate limit exceeded for {CurrentCommander?.Name}, ensure only one app uploads to INARA");
-                Log.Error().Message("Rate limit exceeded").Property("commander", CurrentCommander?.Name).Write();
+                Log.Error("Rate limit exceeded");
             }
             catch (InvalidApiKeyException)
             {
                 notificationInterface.ShowErrorNotification($"Invalid EDSM API key for CMDR ${CurrentCommander?.Name}");
-                Log.Error().Message("Invalid INARA API key").Property("commander", CurrentCommander?.Name).Write();
+                Log.Error("Invalid INARA API key");
             }
             catch (Exception e)
             {

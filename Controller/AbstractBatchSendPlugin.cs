@@ -1,13 +1,11 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Interfaces.Events;
+using DW.ELA.Utility;
+using NLog;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Timers;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Events;
-using DW.ELA.Interfaces.Settings;
-using DW.ELA.Utility;
-using NLog;
-using MoreLinq;
 
 namespace DW.ELA.Controller
 {

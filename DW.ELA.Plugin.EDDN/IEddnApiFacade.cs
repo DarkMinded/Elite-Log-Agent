@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using DW.ELA.Plugin.EDDN.Model;
+﻿using DW.ELA.Plugin.EDDN.Model;
+using System.Threading.Tasks;
 
 namespace DW.ELA.Plugin.EDDN
 {

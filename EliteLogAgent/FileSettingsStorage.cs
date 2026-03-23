@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
 using NLog;
+using System;
+using System.IO;
 
 namespace EliteLogAgent
 {

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using DW.ELA.Utility.Json;
+﻿using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace DW.ELA.Plugin.EDDN.Model
 {

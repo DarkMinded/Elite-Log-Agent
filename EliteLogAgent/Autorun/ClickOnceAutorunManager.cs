@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using Microsoft.Win32;
+using System;
+using System.IO;
 
 namespace EliteLogAgent.Autorun
 {

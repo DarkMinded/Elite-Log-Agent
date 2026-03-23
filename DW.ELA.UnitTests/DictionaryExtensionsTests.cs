@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using DW.ELA.Utility.Extensions;
+﻿using DW.ELA.Utility.Extensions;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
+using System.Collections.Generic;
 
 namespace DW.ELA.UnitTests
 {

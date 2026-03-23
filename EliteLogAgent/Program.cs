@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Castle.Windsor;
+using DW.ELA.Interfaces;
+using DW.ELA.Utility.App;
+using DW.ELA.Utility.Disposable;
+using EliteLogAgent.Autorun;
+using NLog;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using Castle.Windsor;
-using DW.ELA.Controller;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility;
-using NLog;
-using NLog.Fluent;
+
+
 
 namespace EliteLogAgent
 {
@@ -32,7 +34,7 @@ namespace EliteLogAgent
             // Setup logs
             container.Resolve<ILogSettingsBootstrapper>().Setup();
             RootLog.Info("Application started");
-            
+
 
             // Load plugins
             var pluginManager = container.Resolve<IPluginManager>();

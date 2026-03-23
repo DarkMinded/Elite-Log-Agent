@@ -1,12 +1,12 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Interfaces.Events;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Events;
-using Newtonsoft.Json.Linq;
 
-namespace DW.ELA.LogModel
+namespace DW.ELA.Controller.Journal
 {
     public static class JournalEventConverter
     {

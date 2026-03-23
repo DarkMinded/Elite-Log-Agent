@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.App;
 using NLog;
-using NLog.Fluent;
 using NLog.Layouts;
 using NLog.Targets;
-using NLog.Targets.Wrappers;
+using System;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace DW.ELA.Controller
 {
@@ -52,7 +51,7 @@ namespace DW.ELA.Controller
             config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Debug, new DebuggerTarget() { Layout = DefaultLayout }));
 
             LogManager.Configuration = config;
-            Log.Info().Message("Logging enabled").Property("level", logLevel).Write();
+            Log.Info("Logging enabled");
         }
 
         private JsonLayout GetDefaultJsonLayout()
@@ -113,10 +112,10 @@ namespace DW.ELA.Controller
             {
                 FileName = Path.Combine(logDirectory, "EliteLogAgent.json"),
                 ArchiveFileName = Path.Combine(logDirectory, "EliteLogAgent.{###}.json"),
-                ArchiveNumbering = ArchiveNumberingMode.DateAndSequence,
+                ArchiveSuffixFormat = "{1:yyyyMMdd}_{0:00}",
                 ArchiveEvery = FileArchivePeriod.Day,
                 MaxArchiveFiles = 10,
-                ConcurrentWrites = true,
+                AutoFlush = true,
                 ReplaceFileContentsOnEachWrite = false,
                 Encoding = Encoding.UTF8,
                 Layout = GetDefaultJsonLayout()

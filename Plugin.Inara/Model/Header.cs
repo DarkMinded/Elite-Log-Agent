@@ -1,4 +1,5 @@
-﻿using DW.ELA.Utility.Json;
+﻿using DW.ELA.Utility.App;
+using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
 
 namespace DW.ELA.Plugin.Inara.Model
@@ -14,10 +15,10 @@ namespace DW.ELA.Plugin.Inara.Model
 
         // Input fields
         [JsonProperty("appName")]
-        public string AppName => Utility.AppInfo.Name;
+        public string AppName => AppInfo.Name;
 
         [JsonProperty("appVersion")]
-        public string AppVersion => Utility.AppInfo.Version;
+        public string AppVersion => AppInfo.Version;
 
         [JsonProperty("isBeingDeveloped")]
         public bool IsDeveloped => false;

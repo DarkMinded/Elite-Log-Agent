@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using EliteLogAgent;
+﻿using EliteLogAgent.Autorun;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.Diagnostics;
+using System.Linq;
 
 namespace DW.ELA.UnitTests.UI
 {

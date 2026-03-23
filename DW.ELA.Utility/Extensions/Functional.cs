@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DW.ELA.Utility
+namespace DW.ELA.Utility.Extensions
 {
     public static class Functional
     {

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
-using DW.ELA.Utility;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.App;
 using EliteLogAgent.Properties;
 using EliteLogAgent.Settings;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace EliteLogAgent
 {
@@ -29,12 +29,16 @@ namespace EliteLogAgent
         }
 
         // These have to be properties because Form designer does not allow arguments in constructor
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal ISettingsProvider Provider { get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal IPlayerStateHistoryRecorder PlayerStateRecorder { get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal List<IPlugin> Plugins { get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         internal IAutorunManager AutorunManager { get; set; }
 
         private void SettingsForm_Load(object sender, EventArgs e)

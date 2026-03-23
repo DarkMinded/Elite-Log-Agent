@@ -1,6 +1,6 @@
-﻿using System;
-using DW.ELA.Utility.Json;
+﻿using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
+using System;
 
 namespace DW.ELA.Plugin.Inara.Model
 {

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DW.ELA.Utility.Json;
-using Newtonsoft.Json.Linq;
 
 namespace DW.ELA.UnitTests.Utility
 {

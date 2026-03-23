@@ -1,16 +1,15 @@
-﻿using System;
+﻿using DW.ELA.Controller;
+using DW.ELA.Interfaces;
+using DW.ELA.Utility;
+using DW.ELA.Utility.Rest;
+using MoreLinq;
+using Newtonsoft.Json.Linq;
+using NLog;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DW.ELA.Controller;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
-using DW.ELA.Utility;
-using Newtonsoft.Json.Linq;
-using NLog;
-using NLog.Fluent;
-using MoreLinq;
 
 
 
@@ -89,20 +88,11 @@ namespace DW.ELA.Plugin.EDSM
                     foreach (var batch in apiEventsBatches)
                         await apiFacade.PostLogEvents(batch.ToArray());
 
-                    Log.Info()
-                        .Message("Uploaded events")
-                        .Property("eventsCount", events.Count)
-                        .Property("commander", commander)
-                        .Write();
+                    Log.Info("Uploaded events");
                 }
                 else
                 {
-                    Log.Info()
-                        .LoggerName(Log.Name)
-                        .Message("No EDSM API key set for commander, events discarded")
-                        .Property("eventsCount", events.Count)
-                        .Property("commander", commander?.Name ?? "null")
-                        .Write();
+                    Log.Info("No EDSM API key set for commander, events discarded");
                 }
             }
             catch (InvalidApiKeyException)

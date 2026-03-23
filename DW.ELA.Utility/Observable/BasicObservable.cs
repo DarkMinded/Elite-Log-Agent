@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DW.ELA.Utility.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace DW.ELA.Utility.Observable

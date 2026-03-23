@@ -1,8 +1,8 @@
-﻿using System.IO;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller.Journal;
 using DW.ELA.UnitTests.Utility;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System.IO;
 
 
 namespace DW.ELA.UnitTests.Controller

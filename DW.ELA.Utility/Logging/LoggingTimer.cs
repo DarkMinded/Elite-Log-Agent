@@ -1,9 +1,8 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Diagnostics;
-using NLog;
-using NLog.Fluent;
 
-namespace DW.ELA.Utility.Log
+namespace DW.ELA.Utility.Logging
 {
     public class LoggingTimer : IDisposable
     {
@@ -33,10 +32,10 @@ namespace DW.ELA.Utility.Log
         public void Dispose()
         {
             stopwatch.Stop();
-            logger.Log(logLevel)
-                .Message("{0}", context)
-                .Property("duration", stopwatch.ElapsedMilliseconds)
-                .Write();
+
+            logger.WithProperty("duration", stopwatch.ElapsedMilliseconds).Log(logLevel, context);
+
+
         }
     }
 }

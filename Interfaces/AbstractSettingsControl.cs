@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using DW.ELA.Interfaces.Settings;
 
 namespace DW.ELA.Interfaces
 {

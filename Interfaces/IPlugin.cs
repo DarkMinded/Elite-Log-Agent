@@ -1,5 +1,4 @@
 ﻿using System;
-using DW.ELA.Interfaces.Settings;
 
 namespace DW.ELA.Interfaces
 {

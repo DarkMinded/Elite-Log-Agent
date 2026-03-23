@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace EliteLogAgent
+namespace EliteLogAgent.Autorun
 {
     public static class SingleLaunch
     {

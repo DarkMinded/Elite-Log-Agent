@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
 using DW.ELA.Plugin.EDDN.Model;
-using DW.ELA.Utility;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json.Linq;
 using NLog;
-using NLog.Fluent;
+using DW.ELA.Utility.App;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DW.ELA.Plugin.EDDN
 {
@@ -55,15 +54,15 @@ namespace DW.ELA.Plugin.EDDN
             return Enumerable.Empty<EddnEvent>();
         }
 
-        private IDictionary<string, string> CreateHeader(string commanderName)
-        {
-            return new Dictionary<string, string>
+            private IDictionary<string, string> CreateHeader(string commanderName)
             {
+                return new Dictionary<string, string>
+                {
                 ["uploaderID"] = commanderName,
                 ["softwareName"] = AppInfo.Name,
                 ["softwareVersion"] = AppInfo.Version
-            };
-        }
+                };
+            }
 
         private IEnumerable<EddnEvent> ConvertShipyardEvent(Shipyard e, string commanderName)
         {
@@ -189,11 +188,7 @@ namespace DW.ELA.Plugin.EDDN
 
             if (Log.IsTraceEnabled)
             {
-                Log.Trace()
-                    .Message("Converted message")
-                    .Property("source", Serialize.ToJson(e))
-                    .Property("output", Serialize.ToJson(@event))
-                    .Write();
+                Log.Trace("Converted message; source={0}; output={1}", Serialize.ToJson(e), Serialize.ToJson(@event));
             }
 
             yield return @event;

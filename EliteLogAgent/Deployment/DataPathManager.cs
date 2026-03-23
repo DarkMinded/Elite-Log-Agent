@@ -1,7 +1,7 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+using DW.ELA.Utility.App;
+using System;
 using System.IO;
-using DW.ELA.Interfaces;
-using DW.ELA.Utility;
 
 namespace EliteLogAgent.Deployment
 {

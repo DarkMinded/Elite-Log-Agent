@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
 //using MoreLinq;
 //using MoreLinq.Extensions;
 using NLog;
-using NLog.Fluent;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DW.ELA.Controller
 {
@@ -54,19 +53,12 @@ namespace DW.ELA.Controller
 
                 if (e.SystemAddress != null && e.StarSystem != null && systemAddresses.TryAdd((string)e.StarSystem, (ulong)e.SystemAddress))
                 {
-                    Log.Info()
-                        .Message("SystemAddress update")
-                        .Property("StarSystem", e.StarSystem)
-                        .Property("SystemAddress", e.SystemAddress)
-                        .Write();
+                    Log.Info("SystemAddress update - StarSystem={0}; SystemAddress={1}", e.StarSystem, e.SystemAddress);
                 }
 
                 if (e.StarSystem != null && starSystemRecorder.RecordState((string)e.StarSystem, @event.Timestamp))
                 {
-                    Log.Info()
-                        .Message("StarSystem update")
-                        .Property("StarSystem", e.StarSystem)
-                        .Write();
+                    Log.Info("StarSystem update - StarSystem={0}", e.StarSystem);
                 }
 
                 if (e.StationName != null)
@@ -75,11 +67,7 @@ namespace DW.ELA.Controller
                 if (e.Ship != null && e.ShipID != null)
                 {
                     ProcessShipIDEvent((long?)e.ShipID, (string)e.Ship, @event.Timestamp);
-                    Log.Info()
-                        .Message("Ship update")
-                        .Property("ShipID", e.ShipID)
-                        .Property("Ship", e.Ship)
-                        .Write();
+                    Log.Info("Ship update - ShipID={0}; Ship={1}", e.ShipID, e.Ship);
                 }
 
                 // Special cases
@@ -102,7 +90,7 @@ namespace DW.ELA.Controller
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                Log.Error(e, "Error processing journal event");
             }
         }
 
@@ -151,7 +139,7 @@ namespace DW.ELA.Controller
                     lock (stateRecording)
                     {
                         return (T)stateRecording.OrderByDescending(l => l.Key <= atTime).FirstOrDefault().Value;
-                            
+
                     }
                 }
                 catch (Exception e)

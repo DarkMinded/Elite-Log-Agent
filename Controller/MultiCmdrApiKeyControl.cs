@@ -1,14 +1,13 @@
-﻿using System;
+﻿using DW.ELA.Interfaces;
+//using MoreLinq;
+//using MoreLinq.Extensions;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using DW.ELA.Interfaces;
-using DW.ELA.Interfaces.Settings;
-//using MoreLinq;
-//using MoreLinq.Extensions;
-using NLog;
 
 namespace DW.ELA.Controller
 {
@@ -81,8 +80,8 @@ namespace DW.ELA.Controller
             this.apiKeysGridView.AllowUserToAddRows = false;
             this.apiKeysGridView.AllowUserToDeleteRows = false;
             this.apiKeysGridView.AllowUserToResizeRows = false;
-            this.apiKeysGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.apiKeysGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.apiKeysGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.apiKeysGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -179,7 +178,7 @@ namespace DW.ELA.Controller
             buttonValidateKeys.Enabled = false;
             try
             {
-                foreach (var row in apiKeysGridView.Rows.Cast<DataGridViewRow>() )
+                foreach (var row in apiKeysGridView.Rows.Cast<DataGridViewRow>())
                 {
                     var cmdrNameCell = row.Cells[apiKeysGridCommanderColumn.Index];
                     var apiKeyCell = row.Cells[apiKeysGridKeyColumn.Index];

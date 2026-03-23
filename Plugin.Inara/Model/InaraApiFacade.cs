@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Utility.Json;
 using Newtonsoft.Json;
 using NLog;
-using NLog.Fluent;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DW.ELA.Plugin.Inara.Model
 {
@@ -69,12 +68,8 @@ namespace DW.ELA.Plugin.Inara.Model
 
                         exceptions.Add(new ApplicationException(statusText ?? "Unknown Error"));
 
-                        Log.Error().Message(statusText)
-                            .Property("input", inputData.Events[i].ToString())
-                            .Property("output", outputEvent.ToString())
-                            .Property("status", statusCode)
-                            .LoggerName(Log.Name)
-                            .Write();
+                        Log.Error(statusText);
+                            
                     }
                 }
             }

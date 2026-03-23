@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
 using DW.ELA.Plugin.EDDN.Model;
 using DW.ELA.Utility.Json;
 using NLog;
-using NLog.Fluent;
+using System;
+using System.Threading.Tasks;
 
 namespace DW.ELA.Plugin.EDDN
 {
@@ -26,10 +25,7 @@ namespace DW.ELA.Plugin.EDDN
                 string result = await restClient.PostAsync(eventData);
                 if (result != "OK")
                 {
-                    Log.Error()
-                        .Message(result)
-                        .Property("input", eventData)
-                        .Write();
+                    Log.Error("Error pushing event. Response: {0}. Input: {1}", result, eventData);
                 }
                 else
                 {
@@ -38,11 +34,7 @@ namespace DW.ELA.Plugin.EDDN
             }
             catch (Exception e)
             {
-                Log.Error()
-                    .Message("Error pushing event")
-                    .Exception(e)
-                    .Property("input", eventData)
-                    .Write();
+                Log.Error(e, "Error pushing event");
             }
         }
     }

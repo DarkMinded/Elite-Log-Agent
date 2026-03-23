@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace DW.ELA.Utility
+namespace DW.ELA.Utility.App
 {
     public static class AppInfo
     {
@@ -12,7 +12,7 @@ namespace DW.ELA.Utility
             var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly() ?? typeof(AppInfo).Assembly;
             var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             Version = fileVersionInfo.FileVersion;
-            
+
             var clickOnceInstallationDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Apps");
             IsNetworkDeployed = assembly.Location.StartsWith(clickOnceInstallationDirectory);
         }

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller;
 using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
-using DW.ELA.Interfaces.Settings;
+using DW.ELA.UnitTests.Utility;
 using Moq;
 using MoreLinq;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DW.ELA.UnitTests
 {

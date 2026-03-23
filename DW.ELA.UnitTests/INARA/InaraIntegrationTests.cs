@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DW.ELA.Controller;
+﻿using DW.ELA.Controller;
+using DW.ELA.Controller.Journal;
 using DW.ELA.Plugin.Inara;
 using DW.ELA.Plugin.Inara.Model;
 using DW.ELA.UnitTests.Utility;
-using DW.ELA.Utility;
+using DW.ELA.Utility.Rest;
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DW.ELA.UnitTests.INARA
 {
@@ -54,7 +55,7 @@ namespace DW.ELA.UnitTests.INARA
                 .ToList();
 
             CollectionAssert.IsEmpty(results);
-            Assert.Pass($"Uploaded {convertedEvents.Length} events" );
+            Assert.Pass($"Uploaded {convertedEvents.Length} events");
         }
     }
 }

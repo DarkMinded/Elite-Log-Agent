@@ -3,8 +3,10 @@ using Castle.MicroKernel.Registration;
 using Castle.Services.Logging.NLogIntegration;
 using Castle.Windsor;
 using DW.ELA.Controller;
+using DW.ELA.Controller.Journal;
 using DW.ELA.Interfaces;
-using DW.ELA.Utility;
+using DW.ELA.Utility.App;
+using DW.ELA.Utility.Rest;
 using EliteLogAgent.Autorun;
 using EliteLogAgent.Deployment;
 

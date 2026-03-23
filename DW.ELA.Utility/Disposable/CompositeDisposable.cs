@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DW.ELA.Utility
+namespace DW.ELA.Utility.Disposable
 {
     // copy, modified from Rx Official
     // copied from UniRx (MIT license)

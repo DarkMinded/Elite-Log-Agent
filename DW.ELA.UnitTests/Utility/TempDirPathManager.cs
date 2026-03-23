@@ -1,5 +1,5 @@
-﻿using System.IO;
-using DW.ELA.Interfaces;
+﻿using DW.ELA.Interfaces;
+using System.IO;
 
 namespace DW.ELA.UnitTests.Utility
 {
