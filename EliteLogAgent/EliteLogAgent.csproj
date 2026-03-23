@@ -10,17 +10,29 @@
     <RepositoryUrl>https://github.com/DarkMinded/Elite-Log-Agent</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Authors>CMDR John Kozak, CMDR Darkminded</Authors>
-    <PackageId>Elite Log Agent</PackageId>
+    <PackageId>EliteLogAgent</PackageId>
     <Platforms>AnyCPU;x64</Platforms>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
     <ApplicationIcon>Resources\elite-dangerous-icon.ico</ApplicationIcon>
-    <PackageIcon>elite-dangerous-icon.ico</PackageIcon>
+    <PackageIcon>elite-dangerous-icon.png</PackageIcon>
     <UseWPF>True</UseWPF>
     <StartupObject>EliteLogAgent.Program</StartupObject>
+    <Title>Elite Dangerous Log Agent</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
+    <FileVersion>2.0.1.0</FileVersion>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Include="Resources\elite-dangerous-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +55,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Resources\elite-dangerous-icon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\elite-dangerous-icon.jpg">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\elite-dangerous-icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
