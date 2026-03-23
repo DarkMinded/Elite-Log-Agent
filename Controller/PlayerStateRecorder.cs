@@ -1,7 +1,5 @@
 ﻿using DW.ELA.Interfaces;
 using DW.ELA.Interfaces.Events;
-//using MoreLinq;
-//using MoreLinq.Extensions;
 using NLog;
 using System;
 using System.Collections.Concurrent;
@@ -12,7 +10,7 @@ namespace DW.ELA.Controller
 {
     public class PlayerStateRecorder : IPlayerStateHistoryRecorder
     {
-        private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
+        private readonly ILogger Log = LogManager.GetCurrentClassLogger();
 
         private readonly StateRecorder<ShipRecord> shipRecorder = new();
         private readonly StateRecorder<string> starSystemRecorder = new();
@@ -109,6 +107,16 @@ namespace DW.ELA.Controller
             }
         }
 
+        public void Reset() 
+        {
+            shipRecorder.Clear();
+            starSystemRecorder.Clear();
+            stationRecorder.Clear();
+            crewRecorder.Clear();
+            systemCoordinates.Clear();
+            systemAddresses.Clear();
+        }
+
         private class ShipRecord
         {
             public ShipRecord(long shipID, string shipType)
@@ -130,6 +138,7 @@ namespace DW.ELA.Controller
 
         private class StateRecorder<T>
         {
+            private readonly ILogger Log = LogManager.GetCurrentClassLogger();
             private readonly SortedList<DateTime, T> stateRecording = new();
 
             public T GetStateAt(DateTime atTime)
@@ -139,7 +148,6 @@ namespace DW.ELA.Controller
                     lock (stateRecording)
                     {
                         return (T)stateRecording.OrderByDescending(l => l.Key <= atTime).FirstOrDefault().Value;
-
                     }
                 }
                 catch (Exception e)
@@ -168,6 +176,14 @@ namespace DW.ELA.Controller
                     Log.Error(e);
                 }
                 return false;
+            }
+
+            public void Clear()
+            {
+                lock (stateRecording)
+                {
+                    stateRecording.Clear();
+                }
             }
         }
     }

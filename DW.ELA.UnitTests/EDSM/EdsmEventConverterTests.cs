@@ -15,6 +15,9 @@ namespace DW.ELA.UnitTests.EDSM
         private readonly IPlayerStateHistoryRecorder stateRecorder = new PlayerStateRecorder();
         private readonly EdsmEventConverter eventConverter;
 
+        [SetUp]
+        public void Setup() => stateRecorder.Reset();
+
         public EdsmEventConverterTests()
         {
             eventConverter = new EdsmEventConverter(stateRecorder);

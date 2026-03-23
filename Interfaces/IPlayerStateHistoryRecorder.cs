@@ -17,5 +17,7 @@ namespace DW.ELA.Interfaces
         double[] GetStarPos(string systemName);
 
         ulong? GetSystemAddress(string systemName);
+        
+        void Reset();
     }
 }

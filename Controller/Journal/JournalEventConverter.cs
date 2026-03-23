@@ -28,7 +28,8 @@ namespace DW.ELA.Controller.Journal
 
         public static JournalEvent Convert(JObject jObject)
         {
-            string eventName = jObject["event"]?.ToString()?.ToLowerInvariant();
+            string eventName = jObject.SelectToken("$.event")?.ToString()?.ToLowerInvariant();
+                //           string eventName = jObject["event"]?.ToString()?.ToLowerInvariant();
             JournalEvent result;
             if (string.IsNullOrWhiteSpace(eventName))
                 throw new ArgumentException("Empty event name", nameof(jObject));

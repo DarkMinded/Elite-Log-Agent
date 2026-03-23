@@ -14,6 +14,9 @@ namespace DW.ELA.UnitTests.INARA
     {
         private readonly IPlayerStateHistoryRecorder stateRecorder = new PlayerStateRecorder();
         private readonly InaraEventConverter eventConverter;
+        
+        [SetUp]
+        public void Setup() => stateRecorder.Reset();
 
         public InaraEventConverterTests()
         {

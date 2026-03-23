@@ -30,6 +30,7 @@ namespace DW.ELA.UnitTests.INARA
             var logEventSource = new JournalBurstPlayer(new SavedGamesDirectoryHelper().Directory, 5);
             var logCounter = new JournalEventTypeCounter();
             var stateRecorder = new PlayerStateRecorder();
+            stateRecorder.Reset();
 
             var inaraRestClient = new ThrottlingRestClient.Factory().CreateRestClient("https://inara.cz/inapi/v1/");
             var inaraConverter = new InaraEventConverter(stateRecorder);

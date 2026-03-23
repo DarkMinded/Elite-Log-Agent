@@ -16,6 +16,9 @@ namespace DW.ELA.UnitTests.Controller
         private const string ValidShip = "Valid_Ship";
         private const long ValidShipId = 77;
 
+        [SetUp]
+        public void Setup() => eventConverter.Reset();
+
         [Test]
         [Parallelizable]
         [TestCaseSource(typeof(TestEventSource), nameof(TestEventSource.CannedEvents))]
@@ -48,16 +51,16 @@ namespace DW.ELA.UnitTests.Controller
 
 
             eventConverter.OnNext(e1);
-            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            Assert.That(eventConverter.GetPlayerShipType(time4), Is.EqualTo(ValidShip));
+            Assert.That(eventConverter.GetPlayerShipId(time4), Is.EqualTo(ValidShipId));
 
             eventConverter.OnNext(e2);
-            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            Assert.That(eventConverter.GetPlayerShipType(time4), Is.EqualTo(ValidShip));
+            Assert.That(eventConverter.GetPlayerShipId(time4), Is.EqualTo(ValidShipId));
 
             eventConverter.OnNext(e3);
-            ClassicAssert.AreEqual(ValidShip, eventConverter.GetPlayerShipType(time4));
-            ClassicAssert.AreEqual(ValidShipId, eventConverter.GetPlayerShipId(time4));
+            Assert.That(eventConverter.GetPlayerShipType(time4), Is.EqualTo(ValidShip));
+            Assert.That(eventConverter.GetPlayerShipId(time4), Is.EqualTo(ValidShipId));
         }
     }
 }
