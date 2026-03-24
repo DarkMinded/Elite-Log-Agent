@@ -8,6 +8,7 @@ using DW.ELA.Utility.App;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace DW.ELA.Plugin.EDDN
 {
@@ -249,6 +250,11 @@ namespace DW.ELA.Plugin.EDDN
             if (node.Type == JTokenType.Object)
             {
                 objectAction?.Invoke((JObject)node);
+
+                foreach (var child in   CollectionsMarshal.AsSpan(node.Children().ToList()))
+                {
+                    WalkNode(child, objectAction, propertyAction);
+                }
 
                 foreach (var child in node.Children<JProperty>())
                 {

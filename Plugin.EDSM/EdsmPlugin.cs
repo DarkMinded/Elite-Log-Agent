@@ -1,4 +1,4 @@
-﻿using DW.ELA.Controller;
+﻿
 using DW.ELA.Interfaces;
 using DW.ELA.Utility;
 using DW.ELA.Utility.Rest;
@@ -10,6 +10,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DW.ELA.Controller;
 
 
 
@@ -22,6 +23,8 @@ namespace DW.ELA.Plugin.EDSM
         private readonly Task<HashSet<string>> ignoredEvents;
         private readonly ConcurrentDictionary<string, string> ApiKeys = new();
         private readonly IUserNotificationInterface notificationInterface;
+
+        public ISettingsPageProvider GetSettingsPageProvider(GlobalSettings settings)  => new EdsmSettingsPageProvider(PluginId,GetActualApiKeys(), settings, this);
 
         public EdsmPlugin(ISettingsProvider settingsProvider, IPlayerStateHistoryRecorder playerStateRecorder, IRestClientFactory restClientFactory, IUserNotificationInterface notificationInterface)
             : base(settingsProvider)
@@ -105,14 +108,7 @@ namespace DW.ELA.Plugin.EDSM
             }
         }
 
-        public override AbstractSettingsControl GetPluginSettingsControl(GlobalSettings settings) => new MultiCmdrApiKeyControl()
-        {
-            ApiKeys = GetActualApiKeys(),
-            ApiKeyValidator = this,
-            ApiSettingsLink = "https://www.edsm.net/en/settings/api",
-            GlobalSettings = settings,
-            SaveSettingsFunc = SaveSettings
-        };
+   
 
         private void SaveSettings(GlobalSettings settings, IReadOnlyDictionary<string, string> values) => new PluginSettingsFacade<EdsmSettings>(PluginId).SetPluginSettings(settings, new EdsmSettings() { ApiKeys = (IDictionary<string, string>)values });
 

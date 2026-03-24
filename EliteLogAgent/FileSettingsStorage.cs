@@ -62,5 +62,7 @@ namespace EliteLogAgent
         }
 
         private string SettingsFilePath => Path.Combine(settingsFileDirectory, "Settings.json");
+
+        public void Save(GlobalSettings settings) => settingsCache = settings;
     }
 }

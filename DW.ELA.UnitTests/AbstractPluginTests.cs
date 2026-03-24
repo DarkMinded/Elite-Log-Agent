@@ -63,7 +63,7 @@ namespace DW.ELA.UnitTests
                     Flushed.Add(e);
             }
 
-            public override AbstractSettingsControl GetPluginSettingsControl(GlobalSettings settings) => null;
+            public new ISettingsPageProvider GetPluginSettingsControl(GlobalSettings settings) => null;
 
             public override void ReloadSettings()
             {

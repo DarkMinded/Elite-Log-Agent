@@ -43,12 +43,12 @@ namespace DW.ELA.Controller
         protected GlobalSettings GlobalSettings
         {
             get => SettingsProvider.Settings;
-            set => SettingsProvider.Settings = value;
+            set => SettingsProvider.Save( value);
         }
 
         protected ConcurrentQueue<TEvent> EventQueue { get; } = new ConcurrentQueue<TEvent>();
 
-        public abstract AbstractSettingsControl GetPluginSettingsControl(GlobalSettings settings);
+        
 
         public abstract void FlushEvents(ICollection<TEvent> events);
 
@@ -101,6 +101,8 @@ namespace DW.ELA.Controller
             flushTimer.Dispose();
             GC.SuppressFinalize(this);
         }
+
+        public ISettingsPageProvider GetSettingsPageProvider(GlobalSettings settings) => throw new NotImplementedException();
 
         public class CommanderData
         {

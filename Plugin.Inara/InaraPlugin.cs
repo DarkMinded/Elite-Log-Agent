@@ -1,4 +1,4 @@
-﻿using DW.ELA.Controller;
+﻿using EliteLogAgent.Controls;
 using DW.ELA.Interfaces;
 using DW.ELA.Plugin.Inara.Model;
 using DW.ELA.Utility;
@@ -9,6 +9,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.System.UserProfile;
+using DW.ELA.Controller;
 
 namespace DW.ELA.Plugin.Inara
 {
@@ -22,6 +24,8 @@ namespace DW.ELA.Plugin.Inara
         private readonly IPlayerStateHistoryRecorder playerStateRecorder;
         private readonly IUserNotificationInterface notificationInterface;
         private readonly ConcurrentDictionary<string, string> ApiKeys = new();
+
+        public ISettingsPageProvider GetSettingsPageProvider(GlobalSettings settings) => new InaraSettingsPageProvider(PluginId, GetActualApiKeys(), settings, this);
 
         public InaraPlugin(IPlayerStateHistoryRecorder playerStateRecorder, ISettingsProvider settingsProvider, IRestClientFactory restClientFactory, IUserNotificationInterface notificationInterface)
             : base(settingsProvider)
@@ -68,14 +72,7 @@ namespace DW.ELA.Plugin.Inara
         }
 
 
-        public override AbstractSettingsControl GetPluginSettingsControl(GlobalSettings settings) => new MultiCmdrApiKeyControl()
-        {
-            ApiKeys = GetActualApiKeys(),
-            ApiKeyValidator = this,
-            ApiSettingsLink = "https://inara.cz/elite/cmdr-settings-api/",
-            GlobalSettings = settings,
-            SaveSettingsFunc = SaveSettings
-        };
+
 
         private void SaveSettings(GlobalSettings settings, IReadOnlyDictionary<string, string> values) =>
             new PluginSettingsFacade<InaraSettings>(PluginId).SetPluginSettings(settings, new InaraSettings() { ApiKeys = values.ToDictionary() });

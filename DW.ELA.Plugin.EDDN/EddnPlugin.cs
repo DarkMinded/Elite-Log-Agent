@@ -19,7 +19,9 @@ namespace DW.ELA.Plugin.EDDN
         private readonly EddnEventConverter eventConverter;
         private readonly ConcurrentQueue<JObject> lastPushedEvents = new(); // stores last few events to check duplicates
         private string CurrentCommanderName = "Unknown commander";
+        public ISettingsPageProvider GetSettingsPageProvider(GlobalSettings settings) => null;
 
+   
         public EddnPlugin(ISettingsProvider settingsProvider, IPlayerStateHistoryRecorder playerStateRecorder, IRestClientFactory restClientFactory)
         {
             eventConverter = new EddnEventConverter(playerStateRecorder);
@@ -38,7 +40,7 @@ namespace DW.ELA.Plugin.EDDN
 
         public IObserver<JournalEvent> GetLogObserver() => this;
 
-        public AbstractSettingsControl GetPluginSettingsControl(GlobalSettings settings) => new EddnSettingsControl();
+        
 
         public void ReloadSettings() { /* EDDN has no configuration */ }
 

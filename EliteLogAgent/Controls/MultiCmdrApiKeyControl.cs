@@ -1,4 +1,5 @@
 ﻿using DW.ELA.Interfaces;
+using DW.ELA.Controller;
 //using MoreLinq;
 //using MoreLinq.Extensions;
 using NLog;
@@ -8,10 +9,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.ComponentModel;
 
-namespace DW.ELA.Controller
+namespace EliteLogAgent.Controls
 {
-    public class MultiCmdrApiKeyControl : AbstractSettingsControl
+    public class MultiCmdrApiKeyControl : UserControl, ISettingsControl
     {
         private LinkLabel apiKeyLabel;
         private DataGridView apiKeysGridView;
@@ -26,13 +28,20 @@ namespace DW.ELA.Controller
         {
             InitializeComponent();
         }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public GlobalSettings GlobalSettings { get; set; }
+        public void SaveSettings() => SaveSettingsFunc?.Invoke(GlobalSettings, ApiKeys);
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IApiKeyValidator ApiKeyValidator { private get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string ApiSettingsLink { private get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<GlobalSettings, IReadOnlyDictionary<string, string>> SaveSettingsFunc { private get; set; }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IReadOnlyDictionary<string, string> ApiKeys
         {
             get
@@ -157,7 +166,6 @@ namespace DW.ELA.Controller
 
         }
 
-        public override void SaveSettings() => SaveSettingsFunc?.Invoke(GlobalSettings, ApiKeys);
 
         private void ApiKeyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

@@ -1,13 +1,14 @@
 ﻿using DW.ELA.Interfaces;
 using DW.ELA.Utility.App;
+using EliteLogAgent.Controls;
 using EliteLogAgent.Properties;
 using EliteLogAgent.Settings;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace EliteLogAgent
 {
@@ -17,7 +18,10 @@ namespace EliteLogAgent
 
         private GlobalSettings currentSettings;
 
-        private readonly IDictionary<string, AbstractSettingsControl> settingsControls = new Dictionary<string, AbstractSettingsControl>();
+        private readonly IDictionary<string, ISettingsControl> settingsControls = new Dictionary<string, ISettingsControl>();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public GlobalSettings GlobalSettings { get; internal set; }
 
         public SettingsForm()
         {
@@ -57,22 +61,22 @@ namespace EliteLogAgent
             settingsControls.Add("General", generalSettingsControl);
             settingsCategoriesListView.Items.Add("General");
 
-            foreach (var plugin in Plugins)
-            {
-                try
-                {
-                    var control = plugin.GetPluginSettingsControl(currentSettings);
-                    if (control == null)
-                        continue;
-                    control.Dock = DockStyle.Fill;
-                    control.PerformLayout();
-                    settingsControls.Add(plugin.PluginName, control);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, "Error loading plugin {0}", plugin.PluginId);
-                }
-            }
+            //foreach (var plugin in Plugins)
+            //{
+            //    try
+            //    {
+            //        var control = plugin.GetSettingsPageProvider(currentSettings);
+            //        if (control == null)
+            //            continue;
+            //        control.Dock = DockStyle.Fill;
+            //        control.PerformLayout();
+            //        settingsControls.Add(plugin.PluginName, control);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Log.Error(ex, "Error loading plugin {0}", plugin.PluginId);
+            //    }
+            //}
 
             foreach (string category in settingsControls.Keys.OrderBy(x => x))
             {
@@ -88,9 +92,9 @@ namespace EliteLogAgent
             if (settingsCategoriesListView.SelectedIndices.Count > 0)
             {
                 int selectedIndex = settingsCategoriesListView.SelectedIndices.Cast<int>().Single();
-                settingsControlContainer.Controls.OfType<AbstractSettingsControl>().SingleOrDefault()?.SaveSettings();
+                settingsControlContainer.Controls.OfType<ISettingsControl>().SingleOrDefault()?.SaveSettings();
                 settingsControlContainer.Controls.Clear();
-                settingsControlContainer.Controls.Add(settingsControls[settingsCategoriesListView.Items[selectedIndex].Text]);
+                settingsControlContainer.Controls.Add((Control)settingsControls[settingsCategoriesListView.Items[selectedIndex].Text]);
                 settingsControlContainer.PerformLayout();
             }
         }
@@ -105,8 +109,8 @@ namespace EliteLogAgent
 
         private void ApplySettings()
         {
-            settingsControlContainer.Controls.OfType<AbstractSettingsControl>().SingleOrDefault()?.SaveSettings();
-            Provider.Settings = currentSettings;
+            settingsControlContainer.Controls.OfType<ISettingsControl>().SingleOrDefault()?.SaveSettings();
+            Provider.Save (currentSettings);
         }
 
         private void CancelButton_Click(object sender, EventArgs e) => Close();

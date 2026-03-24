@@ -1,4 +1,5 @@
 ﻿using DW.ELA.Interfaces;
+using EliteLogAgent.Controls;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,14 @@ using System.Windows.Forms;
 
 namespace EliteLogAgent.Settings
 {
-    public partial class GeneralSettingsControl : AbstractSettingsControl
+
+    public partial class GeneralSettingsControl : UserControl, ISettingsControl
     {
+        public void SaveSettings()
+        { /* nothing to save — log level and autorun 
+are saved via the combobox/checkbox event handlers directly */
+        }
+
         private static readonly ILogger Log = LogManager.GetCurrentClassLogger();
         private CheckBox checkboxAutostartApplication;
         private Label logLevelLabel;
@@ -35,10 +42,12 @@ namespace EliteLogAgent.Settings
             logLevelComboBox.Items.AddRange(LogLevel.AllLevels.ToArray());
             ReloadSettings();
         }
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public GlobalSettings GlobalSettings { get; internal set; }
         private void ReloadSettings()
         {
             checkboxAutostartApplication.Checked = AutorunManager?.AutorunEnabled ?? false;
+            
             logLevelComboBox.SelectedItem = logLevelComboBox.Items.OfType<LogLevel>().SingleOrDefault(t => t.Name == GlobalSettings.LogLevel) ?? LogLevel.Info;
         }
 

@@ -56,11 +56,12 @@
 		<ProjectReference Include="..\DW.ELA.Plugin.EDDN\DW.ELA.Plugin.EDDN.csproj" />
 		<ProjectReference Include="..\DW.ELA.Utility\DW.ELA.Utility.csproj" />
 		<ProjectReference Include="..\Interfaces\DW.ELA.Interfaces.csproj" />
-		<ProjectReference Include="..\Plugin.EDSM\DW.ELA.Plugin.EDSM.csproj" />
-		<ProjectReference Include="..\Plugin.Inara\DW.ELA.Plugin.Inara.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Controls\MultiCmdrApiKeyControl.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -76,6 +77,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="code-signing.cer">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="code-signing.pfx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="code-signing.pvk">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="Resources\elite-dangerous-icon.ico">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<Pack>True</Pack>
